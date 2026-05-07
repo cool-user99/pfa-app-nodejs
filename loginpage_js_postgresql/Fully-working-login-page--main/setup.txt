@@ -1,0 +1,173 @@
+LOGIN PAGE PROJECT SETUP
+========================
+
+Tech Stack:
+- Node.js
+- Express.js
+- PostgreSQL
+- Knex.js
+
+----------------------------------------
+1. Install Node.js
+----------------------------------------
+
+Check if Node.js is installed:
+
+node -v
+npm -v
+
+If not installed (Ubuntu/Debian):
+
+sudo apt update
+sudo apt install nodejs npm
+
+----------------------------------------
+2. Install PostgreSQL
+----------------------------------------
+
+Install PostgreSQL:
+
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+
+Start PostgreSQL:
+
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+
+Check status:
+
+sudo systemctl status postgresql
+
+----------------------------------------
+3. Configure PostgreSQL
+----------------------------------------
+
+Switch to postgres user:
+
+sudo -i -u postgres
+
+Open PostgreSQL shell:
+
+psql
+
+Set password:
+
+ALTER USER postgres PASSWORD 'Deepti';
+
+Create database:
+
+CREATE DATABASE loginform;
+
+Connect to database:
+
+\c loginform
+
+Create users table:
+
+CREATE TABLE usersv (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(100) NOT NULL
+);
+
+Exit PostgreSQL:
+
+\q
+
+Exit postgres user:
+
+exit
+
+----------------------------------------
+4. Install Project Dependencies
+----------------------------------------
+
+Go to project folder:
+
+cd Fully-working-login-page-
+
+Install dependencies:
+
+npm install
+
+If needed manually install:
+
+npm install express body-parser knex pg
+
+----------------------------------------
+5. Verify Database Config
+----------------------------------------
+
+Open server.js and confirm:
+
+host: '127.0.0.1'
+user: 'postgres'
+password: 'Deepti'
+database: 'loginform'
+
+Change password if your PostgreSQL password is different.
+
+----------------------------------------
+6. Project Structure
+----------------------------------------
+
+Required structure:
+
+project/
+│
+├── server.js
+├── public/
+│   ├── index.html
+│   ├── login.html
+│   └── register.html
+
+----------------------------------------
+7. Run Project
+----------------------------------------
+
+Start server:
+
+node server.js
+
+Expected output:
+
+listening on port 3000.....
+
+----------------------------------------
+8. Open in Browser
+----------------------------------------
+
+Visit:
+
+http://localhost:3000
+
+Routes:
+- /
+- /login
+- /register
+
+----------------------------------------
+9. Common Errors
+----------------------------------------
+
+Error: database "loginform" does not exist
+-> Create database
+
+Error: relation "usersv" does not exist
+-> Create table
+
+Error: password authentication failed
+-> Wrong PostgreSQL password in server.js
+
+Cannot GET /
+-> Missing public/index.html
+
+----------------------------------------
+10. Stop Server
+----------------------------------------
+
+Press:
+
+CTRL + C
